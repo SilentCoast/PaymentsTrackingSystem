@@ -1,0 +1,60 @@
+﻿<Window x:Class="PaymentsTrackingSystem.AddPaymentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:PaymentsTrackingSystem.ViewModels"
+        xmlns:local="clr-namespace:PaymentsTrackingSystem"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:AddPaymentWindowViewModel}"
+        Title="Добавить Платёж" Height="400" Width="650" ResizeMode="NoResize"
+        
+        >
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="txtCentered">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource ResourceKey=txtCentered}">Категория</TextBlock>
+        <TextBlock Style="{StaticResource ResourceKey=txtCentered}" Grid.Row="1">Название продукта</TextBlock>
+        <TextBlock Style="{StaticResource ResourceKey=txtCentered}" Grid.Row="2">Количество</TextBlock>
+        <TextBlock Style="{StaticResource ResourceKey=txtCentered}" Grid.Row="3">Цена</TextBlock>
+
+        <ComboBox Text="{Binding Path=category}" ItemsSource="{Binding Path=categories}" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="400"  Grid.Column="1"/>
+        <ComboBox Text="{Binding Path=product}" ItemsSource="{Binding Path=products}" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="400" Grid.Column="1" Grid.Row="1"/>
+        <TextBox Text="{Binding Path=quantity}" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="200" Grid.Row="2" Grid.Column="1" Padding="5"/>
+        <TextBox Text="{Binding Path=price}" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="200" Grid.Row="3" Grid.Column="1" Padding="5"/>
+
+        <StackPanel Margin="0 0 15 0" VerticalAlignment="Center"  HorizontalAlignment="Right" Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+        <Button Command="{Binding Path=AddPaymentClick}" Padding="10">Добавить
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+            <Separator Width="15" Background="Transparent"></Separator>
+            <Button  Padding="10">Отменить
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

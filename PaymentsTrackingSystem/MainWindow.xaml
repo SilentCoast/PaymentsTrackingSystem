@@ -1,0 +1,72 @@
+﻿<Window x:Class="PaymentsTrackingSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PaymentsTrackingSystem"
+        xmlns:vm="clr-namespace:PaymentsTrackingSystem.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
+        Title="Платежи" Height="450" Width="1000" MinHeight="250" MinWidth="900" MaxHeight="5000" MaxWidth="5000"
+        FontSize="18">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="btnmarg">
+            <Setter Property="Padding" Value="6"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10 0 0 0" Grid.Row="0" Orientation="Horizontal"  VerticalAlignment="Center">
+            <Button Command="{Binding Path=AddPaymentClick}" Height="30" Width="30">+</Button>
+            <Separator Width="15" Background="Transparent"></Separator>
+            <Button Command="{Binding Path=DeleteRow}" Height="30" Width="30">-</Button>
+            <Separator Width="30" Background="Transparent"></Separator>
+            <Border BorderBrush="Blue" BorderThickness="3">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Separator Width="15" Background="Transparent"></Separator>
+                    <TextBlock>с</TextBlock>
+                    <Separator Width="15" Background="Transparent"></Separator>
+                    <ComboBox  MinWidth="100">02.10.2003</ComboBox>
+                    <Separator Width="15" Background="Transparent"></Separator>
+                    <TextBlock>по</TextBlock>
+                    <Separator Width="15" Background="Transparent"></Separator>
+                    <ComboBox MinWidth="100">05.12.2020</ComboBox>
+                </StackPanel>
+            </Border>
+            
+            <Border BorderBrush="Blue" BorderThickness="3">
+                
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Separator Width="15" Background="Transparent"></Separator>
+                    <TextBlock>Категория</TextBlock>
+                    <Separator Width="15" Background="Transparent"></Separator>
+                    <ComboBox Text="{Binding Path=Category}" ItemsSource="{Binding Path=categories}" MinWidth="100"></ComboBox>
+                </StackPanel>
+            </Border>
+            <Border BorderBrush="Blue" BorderThickness="3">
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Separator Width="15" Background="Transparent"></Separator>
+                    <Button Command="{Binding Path=AplyFilters}" Style="{StaticResource ResourceKey=btnmarg}">Применить</Button>
+                    <Separator Width="15" Background="Transparent"></Separator>
+                    <Button Style="{StaticResource ResourceKey=btnmarg}">Сбросить</Button>
+                    <Separator Width="15" Background="Transparent"></Separator>
+                </StackPanel>
+            </Border>
+            <Separator Width="30" Background="Transparent"></Separator>
+            <Button Command="{Binding Path=MakeReport}" Style="{StaticResource ResourceKey=btnmarg}">Отчёт</Button>
+        </StackPanel>
+        <DataGrid SelectedItem="{Binding Path=SelectedPayment}" Grid.Row="1" ItemsSource="{Binding Path=Payments}" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Продукт" Binding="{Binding Path=Product.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Path=Count}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Path=Sum}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Категория" Binding="{Binding Path=Product.Category.Name}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
