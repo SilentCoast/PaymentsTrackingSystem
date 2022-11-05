@@ -1,4 +1,5 @@
 # PaymentsTrackingSystem
+Программа предназначена для отслеживания платежей пользователя.
 ![image](https://user-images.githubusercontent.com/94042423/200117025-0d15ecdd-f88b-4c9e-857b-c1ac17916a53.png)
 
 
